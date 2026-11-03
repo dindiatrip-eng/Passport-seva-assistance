@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10233f">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>Passport Seva Appointment Assistant</title>
+
+<style>
+*{box-sizing:border-box} :root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#172338;background:#f3f6fb}body{margin:0}header{background:#10233f;color:white;padding:18px max(18px,calc((100% - 980px)/2));display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{display:flex;align-items:center;gap:12px}.logo{width:44px;height:44px;border-radius:13px;background:#fff;color:#10233f;display:grid;place-items:center;font-weight:900}h1{font-size:18px;margin:0}header p{margin:3px 0 0;color:#c8d5e7;font-size:12px}.local-tag{font-size:10px;letter-spacing:1px;border:1px solid #8293aa;padding:6px 9px;border-radius:20px}main{max-width:980px;margin:22px auto;padding:0 16px}.notice{background:#fff7df;border:1px solid #f0d58a;color:#644b0b;padding:14px;border-radius:13px;font-size:13px;line-height:1.55;margin-bottom:16px}.panel{background:white;border:1px solid #e1e7f0;border-radius:17px;padding:18px;margin:15px 0;box-shadow:0 3px 14px #15294a08}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:15px}.section-head h2,.panel h2{font-size:17px;margin:0 0 4px}.section-head p{font-size:12px;color:#6a778a;margin:0}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}label{display:block;font-size:12px;font-weight:650;color:#4c5b70;margin:10px 0}input,select{display:block;width:100%;margin-top:6px;padding:11px 12px;border:1px solid #d5deea;border-radius:10px;background:#fff;color:#172338;font:inherit;min-width:0}button,.file-button{border:0;border-radius:10px;padding:11px 14px;font:600 13px system-ui;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px}.primary{background:#1557b0;color:white}.secondary,.file-button{background:#edf2f8;color:#24364f}.danger-outline{background:#fff;color:#a12b2b;border:1px solid #e7bcbc}.row{display:flex;align-items:center;gap:9px;margin-top:12px}.wrap{flex-wrap:wrap}.muted{color:#778397;font-size:12px;font-weight:400}.applicants{display:grid;gap:12px}.app-card{border:1px solid #e0e7f0;border-radius:14px;padding:14px}.card-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.card-top h3{margin:0;font-size:16px}.arn-line{font-size:12px;color:#65748a;margin-top:4px;overflow-wrap:anywhere}.pills{display:flex;flex-wrap:wrap;gap:6px;margin:11px 0}.pill{font-size:11px;border-radius:20px;padding:5px 9px;background:#eef3fa;color:#40516a}.pill.green{background:#e7f6ec;color:#176b36}.pill.amber{background:#fff3d8;color:#805600}.date-list{display:flex;flex-wrap:wrap;gap:6px}.date-chip{font-size:12px;padding:6px 9px;border:1px solid #dce4ef;border-radius:8px}.card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.card-actions button{padding:8px 11px;font-size:12px}.empty{text-align:center;padding:30px 10px;color:#6d7a8d}.empty-icon{font-size:30px}.empty h3{color:#26364c;margin:8px 0}.safety{background:#fbfcfe}.safety ul{padding-left:20px;color:#5c687a;font-size:12px;line-height:1.8}.file-button input{display:none}footer{text-align:center;color:#8994a4;font-size:11px;padding:16px}.full{width:100%}dialog{border:0;border-radius:17px;padding:0;width:min(560px,calc(100% - 24px));box-shadow:0 20px 70px #0003}dialog::backdrop{background:#07152a99}#appForm{padding:20px}.dialog-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.dialog-head h2{font-size:18px;margin:0}.icon-btn{background:#f0f3f8;padding:7px 10px}.date-row{display:flex;align-items:center;gap:7px}.date-row input{flex:1}.date-row button{padding:9px;background:#fff0f0;color:#9d3030}.dialog-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}@media(max-width:540px){header{padding:14px 16px}main{margin:14px auto}.panel{padding:14px}.section-head{align-items:flex-start}.section-head button{white-space:nowrap;padding:9px}.two{gap:8px}.card-top{align-items:flex-start}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><div class="logo">PS</div><div><h1>Passport Seva Assistant</h1><p>Multi-Applicant Appointment Manager</p></div></div>
+  <span class="local-tag">LOCAL APP</span>
+</header>
+<main>
+  <section class="notice">
+    <strong>ध्यान दें:</strong> यह पहला वर्ज़न Applicants, ARN, पसंदीदा तारीखें और monitoring समय मैनेज करता है।
+    यह अभी Passport Seva में login नहीं करता, live slot check या booking नहीं करता। CAPTCHA/OTP bypass नहीं करता।
+  </section>
+
+  <section class="panel">
+    <div class="section-head"><div><h2>Monitoring Window</h2><p>यह समय आपकी checking reminder window है, live website monitoring नहीं।</p></div></div>
+    <div class="two">
+      <label>Start time<input id="windowStart" type="time" value="14:58"></label>
+      <label>End time<input id="windowEnd" type="time" value="15:10"></label>
+    </div>
+    <div class="row wrap">
+      <button id="saveWindow" class="primary">Save time window</button>
+      <button id="notifyTest" class="secondary">Test notification</button>
+      <span id="windowMsg" class="muted"></span>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="section-head">
+      <div><h2>Applicants</h2><p>हर Applicant का ARN और preferred dates अलग रखें।</p></div>
+      <button id="addApplicant" class="primary">＋ Add Applicant</button>
+    </div>
+    <div id="applicants" class="applicants"></div>
+    <div id="empty" class="empty" hidden>
+      <div class="empty-icon">＋</div><h3>अभी कोई Applicant नहीं है</h3>
+      <p>पहला Applicant जोड़ने के लिए “Add Applicant” दबाएँ।</p>
+    </div>
+  </section>
+
+  <section class="panel safety">
+    <h2>Privacy & Security</h2>
+    <ul>
+      <li>अपना Passport Seva password इस App में न डालें।</li>
+      <li>यह जानकारी इसी browser के local storage में रहती है। Shared/public device पर उपयोग न करें।</li>
+      <li>ARN और Applicant details को किसी के साथ साझा न करें। जरूरत हो तो Export की गई backup file सुरक्षित रखें।</li>
+      <li>सही Applicant और ARN की पुष्टि करके ही official portal पर booking पूरी करें।</li>
+    </ul>
+    <div class="row wrap">
+      <button id="exportData" class="secondary">Export backup</button>
+      <label class="file-button secondary">Import backup<input id="importData" type="file" accept="application/json"></label>
+      <button id="clearAll" class="danger-outline">Delete all local data</button>
+    </div>
+  </section>
+  <footer>Unofficial personal organizer · Not affiliated with Passport Seva / MEA</footer>
+</main>
+
+<dialog id="appDialog">
+  <form id="appForm" method="dialog">
+    <div class="dialog-head"><h2 id="dialogTitle">Add Applicant</h2><button type="button" class="icon-btn" id="closeDialog">✕</button></div>
+    <input type="hidden" id="editId">
+    <label>Applicant name<input id="personName" maxlength="80" placeholder="पूरा नाम" required></label>
+    <label>ARN number<input id="arn" maxlength="40" placeholder="ARN number" required autocomplete="off"></label>
+    <div class="two">
+      <label>Passport category
+        <select id="category"><option>Normal</option><option>Tatkaal</option></select>
+      </label>
+      <label>Payment status
+        <select id="payment"><option value="Paid">Paid</option><option value="Pending">Pending</option><option value="Unknown">Not sure</option></select>
+      </label>
+    </div>
+    <label>Preferred appointment dates <span class="muted">(कम से कम 1 तारीख)</span></label>
+    <div id="dateInputs"></div>
+    <button type="button" id="addDate" class="secondary full">＋ Add another date</button>
+    <label>Booking status
+      <select id="bookingStatus"><option value="Not booked">Not booked</option><option value="Booked">Booked</option><option value="Needs attention">Needs attention</option></select>
+    </label>
+    <div class="dialog-actions"><button type="button" id="cancelDialog" class="secondary">Cancel</button><button type="submit" class="primary">Save Applicant</button></div>
+  </form>
+</dialog>
+<script>
+const $=s=>document.querySelector(s);
+const KEY="psa_v1_data";
+let state=load(), editing=false;
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||{windowStart:"14:58",windowEnd:"15:10",applicants:[]}}catch{return {windowStart:"14:58",windowEnd:"15:10",applicants:[]}}}
+function save(){localStorage.setItem(KEY,JSON.stringify(state));render()}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function pretty(d){if(!d)return "";const [y,m,day]=d.split("-").map(Number);return new Date(y,m-1,day).toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"})}
+function render(){
+ $("#windowStart").value=state.windowStart||"14:58";$("#windowEnd").value=state.windowEnd||"15:10";
+ const host=$("#applicants");host.innerHTML="";
+ $("#empty").hidden=state.applicants.length>0;
+ state.applicants.forEach(a=>{
+  const el=document.createElement("article");el.className="app-card";
+  const booked=a.bookingStatus==="Booked";
+  el.innerHTML=`<div class="card-top"><div><h3>${esc(a.name)}</h3><div class="arn-line">ARN: ${esc(a.arn)}</div></div><span class="pill ${booked?"green":a.payment==="Paid"?"amber":""}">${esc(a.bookingStatus)}</span></div>
+  <div class="pills"><span class="pill">${esc(a.category)}</span><span class="pill ${a.payment==="Paid"?"green":"amber"}">Payment: ${esc(a.payment)}</span><span class="pill">${a.dates.length} preferred date(s)</span></div>
+  <div class="date-list">${a.dates.map(d=>`<span class="date-chip">${esc(pretty(d))}</span>`).join("")}</div>
+  <div class="card-actions"><button class="secondary" data-edit="${a.id}">Edit</button><button class="secondary" data-book="${a.id}">${booked?"Mark not booked":"Mark booked"}</button><button class="danger-outline" data-delete="${a.id}">Remove</button></div>`;
+  host.appendChild(el);
+ });
+}
+function dateRow(value=""){
+ const row=document.createElement("div");row.className="date-row";
+ row.innerHTML=`<input type="date" value="${esc(value)}" required><button type="button" aria-label="Remove date">✕</button>`;
+ row.querySelector("button").onclick=()=>{if($("#dateInputs").children.length>1)row.remove();else alert("कम से कम एक तारीख रखें।")};
+ $("#dateInputs").appendChild(row);
+}
+function openAdd(a=null){
+ editing=!!a;$("#dialogTitle").textContent=a?"Edit Applicant":"Add Applicant";
+ $("#editId").value=a?.id||"";$("#personName").value=a?.name||"";$("#arn").value=a?.arn||"";
+ $("#category").value=a?.category||"Normal";$("#payment").value=a?.payment||"Paid";$("#bookingStatus").value=a?.bookingStatus||"Not booked";
+ $("#dateInputs").innerHTML="";(a?.dates?.length?a.dates:[""]).forEach(d=>dateRow(d));
+ $("#appDialog").showModal();
+}
+$("#addApplicant").onclick=()=>openAdd();
+$("#closeDialog").onclick=$("#cancelDialog").onclick=()=>$("#appDialog").close();
+$("#addDate").onclick=()=>dateRow("");
+$("#appForm").onsubmit=e=>{
+ e.preventDefault();
+ const dates=[...$("#dateInputs").querySelectorAll('input[type="date"]')].map(x=>x.value).filter(Boolean);
+ if(!dates.length){alert("कम से कम एक preferred date चुनें।");return}
+ if(new Set(dates).size!==dates.length){alert("एक ही तारीख दो बार न जोड़ें।");return}
+ const id=$("#editId").value||crypto.randomUUID();
+ const obj={id,name:$("#personName").value.trim(),arn:$("#arn").value.trim(),category:$("#category").value,payment:$("#payment").value,bookingStatus:$("#bookingStatus").value,dates};
+ const idx=state.applicants.findIndex(x=>x.id===id);if(idx>=0)state.applicants[idx]=obj;else state.applicants.push(obj);
+ save();$("#appDialog").close();
+};
+$("#applicants").onclick=e=>{
+ const b=e.target.closest("button");if(!b)return;
+ if(b.dataset.edit){const a=state.applicants.find(x=>x.id===b.dataset.edit);openAdd(a)}
+ if(b.dataset.delete){if(confirm("इस Applicant का local record हटाएँ?")){state.applicants=state.applicants.filter(x=>x.id!==b.dataset.delete);save()}}
+ if(b.dataset.book){const a=state.applicants.find(x=>x.id===b.dataset.book);a.bookingStatus=a.bookingStatus==="Booked"?"Not booked":"Booked";save()}
+};
+$("#saveWindow").onclick=()=>{state.windowStart=$("#windowStart").value;state.windowEnd=$("#windowEnd").value;if(!state.windowStart||!state.windowEnd){alert("दोनों समय चुनें");return}save();$("#windowMsg").textContent="Time window saved locally."};
+$("#notifyTest").onclick=async()=>{
+ if(!("Notification"in window)){alert("इस browser में notifications उपलब्ध नहीं हैं।");return}
+ let p=Notification.permission;if(p==="default")p=await Notification.requestPermission();
+ if(p==="granted")new Notification("Passport Seva Assistant",{body:"Notification test सफल रहा। यह live slot alert नहीं है।"});
+ else alert("Browser settings में notifications allow करें।");
+};
+$("#exportData").onclick=()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="passport-assistant-backup.json";a.click();URL.revokeObjectURL(a.href)};
+$("#importData").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const x=JSON.parse(await f.text());if(!Array.isArray(x.applicants))throw Error();state={windowStart:x.windowStart||"14:58",windowEnd:x.windowEnd||"15:10",applicants:x.applicants};save();alert("Backup imported.");}catch{alert("यह backup file सही format में नहीं है।")}e.target.value=""};
+$("#clearAll").onclick=()=>{if(confirm("सभी Applicants और settings इस browser से स्थायी रूप से हटाएँ?")){state={windowStart:"14:58",windowEnd:"15:10",applicants:[]};save()}};
+if("serviceWorker"in navigator && location.protocol.startsWith("http"))navigator.serviceWorker.register("./sw.js").catch(()=>{});
+render();
+if ("serviceWorker" in navigator && location.protocol === "https:") { navigator.serviceWorker.register("./sw.js").catch(()=>{}); }
+</script>
+</body>
+</html>
